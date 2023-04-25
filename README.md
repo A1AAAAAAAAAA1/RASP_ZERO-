@@ -27,6 +27,7 @@ Rasp(Runtime Application Self Protection) 配套的简单靶场。
   ProcessBuild命令执行
   ![KZ)PR`R2Y}0766 T8FK5QMT](https://user-images.githubusercontent.com/94785056/234169705-1de9ec7c-5462-4bf3-958d-438e8a124370.png)
   ![ZU72W9SDT%K)SMONEVVW Q2](https://user-images.githubusercontent.com/94785056/234169763-db35b98d-ad5a-4a24-89a9-0ab2a91ca60a.png)
+  
   XML(javax.xml.parsers.DocumentBuilder外部实体注入
   ![IIP@09B2}W~{J701CQ6257Q](https://user-images.githubusercontent.com/94785056/234171011-97da2065-add6-47ff-8eb8-9a835ac4ac33.png)
   poc= <?xml version="1.0" encoding="ISO-8859-1"?><!DOCTYPE foo [   <!ELEMENT foo ANY >  <!ENTITY xxe SYSTEM "file:///c:/windows/win.ini" >]><foo>&xxe;</foo>
