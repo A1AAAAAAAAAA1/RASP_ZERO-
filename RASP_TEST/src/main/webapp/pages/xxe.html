@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>XXE漏洞测试</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <base href="http://localhost:8081/test/">
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="static/assets/img/favicon.png" rel="icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i,900" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="static/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="static/assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="static/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="static/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="static/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="static/assets/css/style.css" rel="stylesheet">
+
+    <!-- =======================================================
+    * Template Name: Mamba - v4.7.0
+    * Template URL: https://bootstrapmade.com/mamba-one-page-bootstrap-template-free/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
+
+</head>
+<body>
+<!--关键语句-->
+
+<header id="header" class="d-flex align-items-center">
+    <div class="container d-flex align-items-center">
+
+        <div class="logo me-auto">
+            <h1><a href="/test/pages/index.html">首页</a></h1>
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <!-- <a href="temp.html"><img src="static/assets/img/logo.png" alt="" class="img-fluid"></a>-->
+        </div>
+
+        <nav id="navbar" class="navbar">
+            <ul>
+                <li><a class="nav-link scrollto active" href="/test/pages/index.html">Rasp介绍</a></li>
+                <li><a class="nav-link scrollto" href="/test/pages/sql.html">sql注入漏洞</a></li>
+                <li><a class="nav-link scrollto" href="/test/pages/runtime.html">runtime命令执行漏洞</a></li>
+                <li><a class="nav-link scrollto" href="/test/pages/pbuild.html">ProcessBuilder命令执行漏洞</a></li>
+                <li><a class="nav-link scrollto" href="/test/pages/xxe.html">XXE漏洞</a></li>
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+    </div>
+</header><!-- End Header -->
+<div class="container">
+
+    <div class="section-title">
+        <h2>Xml 外部实体注入漏洞测试</h2>
+    </div>
+
+    <div class="row  d-flex align-items-stretch">
+
+        <div class="col-lg-5 faq-item aos-init aos-animate" data-aos="fade-up">
+            <h4>实验命令&Poc</h4>
+            <p>
+                POC1:<?xml version="1.0" encoding="ISO-8859-1"?><!DOCTYPE foo [   <!ELEMENT foo ANY >  <!ENTITY xxe SYSTEM "file:///c:/windows/win.ini" >]><foo>&xxe;</foo>
+            </p>
+            <p>
+<!--                <?xml version="1.0" encoding="ISO-8859-1"?><!DOCTYPE foo [   <!ELEMENT foo ANY >  <!ENTITY xxe SYSTEM "file:///c:/windows/win.ini" >]><foo>&xxe;</foo>-->
+            </p>
+            <p>
+
+            </p>
+        </div>
+
+        <div class="col-lg-6 faq-item aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+            <h4>防护规则</h4>
+            <p>
+                1.Hook com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl类中的 parse()方法
+            </p>
+            <p>
+                2.获取parse()方法执行的参数，判断参数类型是否为org.xml.sax.InputSource。
+            </p>
+            <p>
+                3.阻断该命令执行
+            </p>
+        </div>
+    </div>
+
+</div>
+<form action="xxe_Servlet" method="post" role="form" class="php-email-form">
+    <div class="form-group">
+        <textarea class="form-control" name="data" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="请输入XML格式数据"></textarea>
+        <div class="validate"></div>
+    </div>
+    <div class="mb-3">
+        <div class="loading">Rasp_zero</div>
+        <div class="error-message"></div>
+        <div class="sent-message">Runtime application self-protection</div>
+    </div>
+    <div class="text-center"><button type="submit">运行POC</button></div>
+</form>
+<!--<form action="pbulid_Servlet" method="post">-->
+<!--  <label></label>-->
+<!--  <label>-->
+<!--    <input class="itxt" type="text" name="prbpoc"  placeholder="请输入ProcessBulider参数">-->
+<!--  </label>-->
+<!--  <input type="submit" value="提交" >-->
+<!--</form>-->
+<br><br>
+
+</body>
+</html>
